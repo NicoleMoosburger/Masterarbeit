@@ -1,0 +1,28 @@
+<graph id="Graph">
+  <version>1.0</version>
+  <node id="Resample">
+    <operator>Resample</operator>
+      <sources>
+        <sourceProduct>${sourceProduct}</sourceProduct>
+      </sources>
+      <parameters>
+        <targetResolution>${resolution}</targetResolution>
+        <upsampling>${up}</upsampling>
+        <downsampling>${down}</downsampling>
+        <flagDownsampling>${flag}</flagDownsampling>
+        <resampleOnPyramidLevels>false</resampleOnPyramidLevels>
+      </parameters>  
+   </node>
+  <node id="BiophysicalOp">
+    <operator>BiophysicalOp</operator>
+    <sources>
+      <sourceProduct refid="Resample"/>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <sensor>S2A</sensor>
+      <computeLAI>true</computeLAI>
+      <computeFapar>true</computeFapar>
+      <computeFcover>true</computeFcover>
+    </parameters>
+  </node>
+</graph>
